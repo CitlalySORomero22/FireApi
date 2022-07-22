@@ -36,13 +36,15 @@ function login(){
             console-console.log(json);
             sessionStorage.setItem("token", json.token);
 
-            Swal.fire({
+            alert("Bienvenido")
+            window.location = "../templates/bienvenida.html";
+            /*Swal.fire({
                 title: "Ya estas registrado(a)",
                 text: "Bienvenido(a)",
                 type: "success"
             }).then(function() {
                 window.location = "../templates/bienvenida.html";
-            });
+            });*/
         };
     
     };
