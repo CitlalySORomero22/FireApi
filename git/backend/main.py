@@ -1,10 +1,30 @@
 from fastapi import Depends, FastAPI , HTTPException, status, Security
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from pydantic import BaseModel
 
 import pyrebase
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+class UserIN(BaseModel):
+    email       : str
+    password    : str
+
+origins = [
+    "https://8080-citlalysoromero-fireapi-vgmru85w7q3.ws-us54.gitpod.io/",
+    "https://8000-citlalysoromero-fireapi-vgmru85w7q3.ws-us54.gitpod.io/",
+    "*",   
+            
+    ]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def root():
@@ -26,7 +46,7 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 securityBasic  = HTTPBasic()
 securityBearer = HTTPBearer()
 
-@app.get(
+@app.post(
     "/users/token",
     status_code=status.HTTP_202_ACCEPTED,
     summary="Consigue un token para el usuario",
@@ -34,7 +54,7 @@ securityBearer = HTTPBearer()
     tags=["auth"],
 )
 
-def get_token(credentials: HTTPBasicCredentials = Depends(securityBasic)):
+def post_token(credentials: HTTPBasicCredentials = Depends(securityBasic)):
     try:
         email = credentials.username
         password = credentials.password
@@ -77,3 +97,23 @@ async def get_user(credentials: HTTPAuthorizationCredentials = Depends(securityB
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED           
         )
+
+@app.post(  "/users/",  
+    status_code=status.HTTP_202_ACCEPTED, 
+    summary="Crea un usuario",
+    description="Crea un usuario", 
+    tags=["auth"]
+)
+
+async def create_user(usuario: UserIN ):
+    try:
+        auth = firebase.auth()
+        db=firebase.database()
+        user = auth.create_user_with_email_and_password(usuario.email, usuario.password)
+        uid = user["localId"]
+        db.child("users").child(uid).set({"email": usuario.email, "level": 1 })
+        
+        response = {"Usuario Agregado"}
+        return response
+    except Exception as error:
+        print(f"Error: {error}")
