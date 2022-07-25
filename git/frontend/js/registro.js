@@ -25,6 +25,7 @@ function PostRegUser(){
             const json = JSON.parse(response);
             console-console.log(json);
             alert("Usuario agregado");
+            window.location = "/templates/login.html";
 
         }  
     };
