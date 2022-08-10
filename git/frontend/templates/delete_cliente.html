@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+    <header>
+        <h1>DOM javascript</h1>
+    </header>
+    <body>
+        <form id="form_cliente">
+            <label for="nombre">Nombre</label>
+            <br>
+            <input type="text" id="nombre" name="nombre" />
+            <br>
+            <label for="email">Email</label>
+            <br>
+            <input type="email" id="email" name="email" />
+            <br>
+            <input type="button" value="Borrar" onclick="deleteCliente()"/>
+            </form>
+
+            <script type="text/javascript" src="/js/delete_cliente.js"></script>
+            <script type="text/javascript" src="/js/get_cliente.js"></script>
+        <script async>
+            document.body.onload = getCliente();
+        </script>
+    </body>
+</html>

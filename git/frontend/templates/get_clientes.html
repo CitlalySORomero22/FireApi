@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+    <header>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>DOM javascript</title>
+    </header>
+    <body>
+        <h1>DOM javascript</h1>
+        <script type="text/javascript" src="/js/get_clientes.js"></script>
+        <a href="post_cliente.html">Insertar Clientes</a>
+        <table id="tabla_clientes">
+
+        </table>
+
+        <script async>
+            document.body.onload = getClientes();
+        </script>
+    </body>
+</html>
