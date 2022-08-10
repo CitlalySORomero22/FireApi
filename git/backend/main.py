@@ -26,8 +26,7 @@ class Respuesta (BaseModel) :
                 
 
 origins = [
-    "https://8080-citlalysoromero-fireapi-vgmru85w7q3.ws-us54.gitpod.io/",
-    "https://8000-citlalysoromero-fireapi-vgmru85w7q3.ws-us54.gitpod.io/",
+    
     "*",   
             
     ]

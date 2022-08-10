@@ -56,8 +56,8 @@ function getClientes() {
                     nombre.innerHTML        = parseo_json[key][id].Nombre;
                     email.innerHTML         = parseo_json[key][id].Email;
                     detalle.innerHTML       = "<a class='btn btn-info btn-sm' href='/templates/get_cliente.html?"+id+"'><span class='glyphicon glyphicon-list-alt'></span>  Detalle</a>";
-                    actualizar.innerHTML    = "<a class='btn btn-info btn-sm' href='/templates/update_clientes.html?"+id+"'><span class='glyphicon glyphicon-pencil'></span>  Actualizar</a>";
-                    borrar.innerHTML        = "<a class='btn btn-info btn-sm' href='/templates/delete_clientes.html?"+id+"'><span class='glyphicon glyphicon-trash'>  Borrar</a>";
+                    actualizar.innerHTML    = "<a class='btn btn-info btn-sm' href='/templates/update_cliente.html?"+id+"'><span class='glyphicon glyphicon-pencil'></span>  Actualizar</a>";
+                    borrar.innerHTML        = "<a class='btn btn-info btn-sm' href='/templates/delete_cliente.html?"+id+"'><span class='glyphicon glyphicon-trash'>  Borrar</a>";
                     
 
                     tr.appendChild(id_cliente);

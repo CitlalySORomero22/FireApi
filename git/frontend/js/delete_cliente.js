@@ -28,13 +28,9 @@ function deleteCliente(){
             //console.log("JSON: " + json);
             console.log("Status: " + status);
 
-            Swal.fire({
-                title: json.message,
-                text: "Regresar a la lista de clientes ",
-                type: "success"
-            }).then(function() {
-                window.location = "/templates/get_clientes.html";
-            });
+            alert(json.message);
+            window.location = "/templates/get_clientes.html";
+            
         }
     };
     request.send();
